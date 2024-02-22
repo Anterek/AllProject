@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Calculate.Views.MainForm"
+             Title="">
+    <VerticalStackLayout>
+        <Entry x:Name="fieldEntry" Text="0" FontSize="30" MaxLength="12" Margin="10" WidthRequest="230" BackgroundColor="LightGray" HorizontalOptions="Start" FlowDirection="RightToLeft" IsReadOnly="False"/>
+        <Grid ColumnSpacing="10" RowSpacing="10" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="sevenButton" Text="7" Grid.Column="0" Grid.Row="0" BackgroundColor="LightGray" TextColor="Black" Clicked="sevenButton_Clicked"/>
+            <Button x:Name="eightButton" Text="8" Grid.Column="1" Grid.Row="0" BackgroundColor="LightGray" TextColor="Black" Clicked="eightButton_Clicked"/>
+            <Button x:Name="nineButton" Text="9" Grid.Column="2" Grid.Row="0" BackgroundColor="LightGray" TextColor="Black" Clicked="nineButton_Clicked"/>
+            <Button x:Name="divisionButton" Text="/" Grid.Column="3" Grid.Row="0" BackgroundColor="LightGray" TextColor="Black" Clicked="divisionButton_Clicked"/>
+            <Button x:Name="fourButton" Text="4" Grid.Column="0" Grid.Row="1" BackgroundColor="LightGray" TextColor="Black" Clicked="fourButton_Clicked"/>
+            <Button x:Name="fiveButton" Text="5" Grid.Column="1" Grid.Row="1" BackgroundColor="LightGray" TextColor="Black" Clicked="fiveButton_Clicked"/>
+            <Button x:Name="sixButton" Text="6" Grid.Column="2" Grid.Row="1" BackgroundColor="LightGray" TextColor="Black" Clicked="sixButton_Clicked"/>
+            <Button x:Name="multiButton" Text="*" Grid.Column="3" Grid.Row="1" BackgroundColor="LightGray" TextColor="Black" Clicked="multiButton_Clicked"/>
+            <Button x:Name="oneButton" Text="1" Grid.Column="0" Grid.Row="2" BackgroundColor="LightGray" TextColor="Black" Clicked="oneButton_Clicked"/>
+            <Button x:Name="twoButton" Text="2" Grid.Column="1" Grid.Row="2" BackgroundColor="LightGray" TextColor="Black" Clicked="twoButton_Clicked"/>
+            <Button x:Name="threeButton" Text="3" Grid.Column="2" Grid.Row="2" BackgroundColor="LightGray" TextColor="Black" Clicked="threeButton_Clicked"/>
+            <Button x:Name="minusButton" Text="-" Grid.Column="3" Grid.Row="2" BackgroundColor="LightGray" TextColor="Black" Clicked="minusButton_Clicked"/>
+            <Button x:Name="zeroButton" Text="0" Grid.Column="0" Grid.Row="3" BackgroundColor="LightGray" TextColor="Black" Clicked="zeroButton_Clicked"/>
+            <Button x:Name="pointButton" Text="," Grid.Column="1" Grid.Row="3" BackgroundColor="LightGray" TextColor="Black" Clicked="pointButton_Clicked"/>
+            <Button x:Name="plusButton" Text="+" Grid.Column="2" Grid.Row="3" BackgroundColor="LightGray" TextColor="Black" Clicked="plusButton_Clicked"/>
+            <Button x:Name="equallyButton" Text="=" Grid.Column="3" Grid.Row="3" BackgroundColor="LightGray" TextColor="Black" Clicked="equalluButton_Clicked"/>
+            <Button x:Name="clearButton" Text="C" Grid.Row="4" Grid.ColumnSpan="4" BackgroundColor="LightGray" TextColor="Black" Clicked="clearButton_Clicked"/>
+        </Grid>
+    </VerticalStackLayout>
+
+</ContentPage>

@@ -1,0 +1,1 @@
+C:\Users\ud-admin\source\repos\AllProjects\AllProjects\GeneratePass\GeneratePass.csproj;x64

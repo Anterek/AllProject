@@ -1,74 +1,30 @@
+using GeneratePass.Services;
 using GeneratePass.ViewModels;
-using System.ComponentModel.Design;
-using System.Text;
 
 namespace GeneratePass.Views;
 
 public partial class MainPage : ContentPage
-{ 
-	SymbolViewModel SymbolViewModel = new SymbolViewModel();
-  Random random = new Random();
+{
+	SymbolViewModel SymbolViewModel = new();
 
+  /// <summary>
+  /// Кнопка генерации пароля.
+  /// </summary>
+  /// <param name="sender">Событие.</param>
+  /// <param name="e">Данные события.</param>
   public void Clicked_GenerationPassword(object sender, EventArgs e)
   {
-    int count = SymbolViewModel.LengthPassword;
-    StringBuilder prev = new StringBuilder();
-    string password = string.Empty;
-    while(count != 0)
-    {
-      if (numbersCheck.IsChecked)
-        prev.Append(random.Next(10));
-      if (lowerCheck.IsChecked)
-        prev.Append(SymbolViewModel.LowerChars[random.Next(0, SymbolViewModel.LowerChars.Length)]);
-      if (upperCheck.IsChecked)
-        prev.Append(SymbolViewModel.UpperChars[random.Next(0, SymbolViewModel.UpperChars.Length)]);
-      if (symbolCheck.IsChecked)
-        prev.Append(SymbolViewModel.Symbols[random.Next(0, SymbolViewModel.Symbols.Length)]);
-      password += prev[random.Next(0, prev.Length)];
-      prev.Clear();
-      count--;
-    }
-    if (lowerCheck.IsChecked)
-    {
-      if (!CheckCharOccurrence(SymbolViewModel.LowerChars, password))
-        Clicked_GenerationPassword(sender, e);
-    }
-    if (upperCheck.IsChecked)
-    {
-      if (!CheckCharOccurrence(SymbolViewModel.UpperChars, password))
-        Clicked_GenerationPassword(sender, e);
-    }
+    GeneratePassword generatePassword = new();
+    List<char[]> characters = new();
     if (numbersCheck.IsChecked)
-    {
-      if (!CheckNumberOccurrence(password))
-        Clicked_GenerationPassword(sender, e);
-    }
+      characters.Add(SymbolViewModel.NumberChars);
+    if(lowerCheck.IsChecked)
+      characters.Add(SymbolViewModel.LowerChars);
+    if (upperCheck.IsChecked)
+      characters.Add(SymbolViewModel.UpperChars);
     if (symbolCheck.IsChecked)
-    {
-      if (!CheckCharOccurrence(SymbolViewModel.Symbols, password))
-        Clicked_GenerationPassword(sender, e);
-    }
-    passEntry.Text = password;
-  }
-
-  private bool CheckCharOccurrence(char[] chars, string password)
-  {
-    foreach(var e in chars)
-    {
-      if (password.Contains(e))
-        return true;
-    }
-    return false;
-  }
-
-  private bool CheckNumberOccurrence(string password)
-  {
-    for (int i = 0; i < 10; i++)
-    {
-      if (password.Contains(i.ToString()))
-        return true;
-    }
-    return false;
+      characters.Add(SymbolViewModel.Symbols);
+    passEntry.Text = generatePassword.Generate(characters,SymbolViewModel.LengthPassword);
   }
 
   /// <summary>
@@ -111,6 +67,9 @@ public partial class MainPage : ContentPage
 		symbolCheck.IsChecked = !symbolCheck.IsChecked;
 	}
 
+  /// <summary>
+  /// Конструктор.
+  /// </summary>
   public MainPage()
   {
     InitializeComponent();

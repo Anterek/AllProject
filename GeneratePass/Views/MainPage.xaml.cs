@@ -14,7 +14,6 @@ public partial class MainPage : ContentPage
   /// <param name="e">Данные события.</param>
   public void Clicked_GenerationPassword(object sender, EventArgs e)
   {
-    GeneratePassword generatePassword = new();
     List<char[]> characters = new();
     if (numbersCheck.IsChecked)
       characters.Add(SymbolViewModel.NumberChars);
@@ -24,7 +23,8 @@ public partial class MainPage : ContentPage
       characters.Add(SymbolViewModel.UpperChars);
     if (symbolCheck.IsChecked)
       characters.Add(SymbolViewModel.Symbols);
-    passEntry.Text = generatePassword.Generate(characters,SymbolViewModel.LengthPassword);
+    GeneratePassword generatePassword = new(characters, SymbolViewModel.LengthPassword);
+    passEntry.Text = generatePassword.GetPassword();
   }
 
   /// <summary>

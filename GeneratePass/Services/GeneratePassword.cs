@@ -5,21 +5,45 @@ namespace GeneratePass.Services
   class GeneratePassword
   {
     /// <summary>
-    /// Генерация случайной последовательности символов.
+    /// Список массива символов.
     /// </summary>
-    /// <param name="characters">Список массивов символов.</param>
-    /// <param name="lengthPassword">Длина пароля.</param>
+    private List<char[]> Characters {  get; set; }
+    
+    /// <summary>
+    /// Длина пароля.
+    /// </summary>
+    private int LengthPassword { get; set; }
+
+    ValidatePassword validatePassword = new();
+
+    /// <summary>
+    /// Получить пароль.
+    /// </summary>
     /// <returns>Пароль.</returns>
-    public string Generate(List<char[]> characters, int lengthPassword)
+    public string GetPassword()
     {
-      ValidatePassword validatePassword = new();
+      string password = Generate();
+      foreach (char[] character in Characters)
+      {
+        if (!validatePassword.CheckCharOccurrence(character, password))
+          GetPassword();
+      }
+      return password;
+    }
+
+    /// <summary>
+    /// Генерация пароля.
+    /// </summary>
+    /// <returns>Сгенерированный пароль.</returns>
+    public string Generate()
+    {
       Random random = new();
-      int count = lengthPassword;
+      int count = LengthPassword;
       StringBuilder prev = new();
       StringBuilder password = new();
       while (count != 0)
       {
-        foreach (char[] character in characters)
+        foreach (char[] character in Characters)
         {
           prev.Append(character[random.Next(0, character.Length)]);
         }
@@ -27,12 +51,18 @@ namespace GeneratePass.Services
         prev.Clear();
         count--;
       }
-      foreach (char[] character in characters)
-      {
-        if (!validatePassword.CheckCharOccurrence(character, password.ToString()))
-          Generate(characters, lengthPassword);
-      }
       return password.ToString();
+    }
+
+    /// <summary>
+    /// Конструктор.
+    /// </summary>
+    /// <param name="characters">Список массивов символов.</param>
+    /// <param name="lengthPassword">Длина пароля.</param>
+    public GeneratePassword(List<char[]> characters, int lengthPassword)
+    {
+      Characters = characters;
+      LengthPassword = lengthPassword;
     }
   }
 }

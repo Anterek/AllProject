@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GeneratePass.Views.MainPage" >
+    <VerticalStackLayout Margin="10" VerticalOptions="Center" HorizontalOptions="Center">
+        <Label x:Name="passEntry" HorizontalOptions="Center" Text="password" FontSize="30" Padding="10" Margin="10" FontAttributes="Bold"/>
+        <Label x:Name="lengthPassLabel" Text="Укажите длину пароля" FontSize="15" FontAttributes="Bold" Margin="10"/>
+        <HorizontalStackLayout Padding="10">
+            <Label x:Name="labelSliderLengthPass" Text="9" BackgroundColor= "LightGray" FontAttributes="Bold" FontSize="15" Margin="10"/>
+            <Slider x:Name="lengthPassEntry"  Minimum="5" Maximum="13" Value="9"  WidthRequest="240" MinimumTrackColor="Orange" MaximumTrackColor="Green"/>
+        </HorizontalStackLayout>
+        <Label x:Name="symbolOptions" Margin="10" Text="Опции для генерации пароля." FontSize="15" FontAttributes="Bold"/>
+        <HorizontalStackLayout>
+            <CheckBox x:Name="numbersCheck" IsChecked="True"/>
+            <Label x:Name="numbersChecklabel" Padding="15" Text="Содержать числа.">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ClickedNumbersCheck"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <CheckBox x:Name="lowerCheck" IsChecked="True"/>
+            <Label x:Name="LowerCheckLabel" Padding="15" Text="Содержать строчные буквы.">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ClickedLowerCheck"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <CheckBox x:Name="upperCheck" IsChecked="True"/>
+            <Label x:Name="upperCheckLabel" Padding="15" Text="Соджержать заглавные буквы.">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CLickedUpperCheck"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <CheckBox x:Name="symbolCheck" IsChecked="True"/>
+            <Label x:Name="symbolCheckLabel" Padding="15"  Text="Содержать специальные символы.">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ClickedSymbolCheck"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </HorizontalStackLayout>
+        <Button x:Name="generateButton" Text="Сгенерировать пароль" WidthRequest="240" HorizontalOptions="Center" Margin="10" Clicked="Clicked_GenerationPassword"/>
+    </VerticalStackLayout>
+</ContentPage>
